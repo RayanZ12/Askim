@@ -130,6 +130,17 @@
             max-height: 50%;
         }
 
+        #imageChatPide {
+            display: none;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 50%;
+            max-height: 50%;
+        }
+
+
         #message {
             position: absolute;
             top: 10%;
@@ -185,7 +196,6 @@
             const boutonNon = document.getElementById('boutonNon');
 
             function deplacerBouton(bouton) {
-              if (!boutonOuiClique) {
                 const maxX = window.innerWidth - bouton.clientWidth;
                 const maxY = window.innerHeight - bouton.clientHeight;
 
@@ -194,18 +204,21 @@
 
                 bouton.style.left = newX + 'px';
                 bouton.style.top = newY + 'px';
-                }
             }
 
             boutonNon.addEventListener('mouseover', function () {
+              deplacerBouton(boutonNon);
               if (!boutonOuiClique) {
-                deplacerBouton(boutonNon);
                 imageChatReda.style.display = 'none';
                 imageChat.style.display = 'none';
                 imageChatTriste.style.display = 'block';
                 message.innerHTML = 'Non, arrête....';
                 }
-
+              if (boutonOuiClique) {
+                message.innerHTML = 'Belfine trop tard, tu as dis oui...';
+                imageChatRayan.style.display = 'none';
+                imageChatPide.style.display = 'block';
+                }
             });
         });
     </script>
@@ -214,11 +227,12 @@
 <body>
     <button id="boutonNon" class="bouton">Non</button>
     <button id="boutonOui" class="bouton">Oui</button>
-    <img id="imageChat" src="ezel.jpeg">
-    <img id="imageChatNouvelle" src="danse.gif">
-    <img id="imageChatTriste" src="sad.gif">
-    <img id="imageChatRayan" src="rayou.jpeg">
-    <img id="imageChatReda" src="zehef.jpg">
+    <img id="imageChat" src="image\ezel.jpeg">
+    <img id="imageChatNouvelle" src="image\danse.gif">
+    <img id="imageChatTriste" src="image\sad.gif">
+    <img id="imageChatRayan" src="image\rayou.jpeg">
+    <img id="imageChatReda" src="image\zehef.jpg">
+    <img id="imageChatPide" src="image\pide.jpg">
     <div id="message">Veux-tu m'épouser, askim ?</div>
 </body>
 </html>
