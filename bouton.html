@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #f5f5dc; /* Couleur beige */
+            margin: 0; /* Supprimer la marge par défaut du body */
+        }
+
+        .bouton {
+            position: absolute;
+            font-size: 16px;
+            cursor: pointer;
+            transition: left 0.5s, top 0.5s;
+        }
+
+        #boutonNon {
+            top: 75%;
+            left: 55%;
+            display: inline-block;
+            background-color: #7b38d8;
+            border-radius: 10px;
+            border: 4px double #cccccc;
+            color: #eeeeee;
+            text-align: center;
+            font-size: 28px;
+            padding: 20px;
+            width: 200px;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        #boutonOui {
+            top: 75%;
+            left: 35%;
+            display: inline-block;
+            background-color: #7b38d8;
+            border-radius: 10px;
+            border: 4px double #cccccc;
+            color: #eeeeee;
+            text-align: center;
+            font-size: 28px;
+            padding: 20px;
+            width: 200px;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        #boutonOui span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+        #boutonOui span:after {
+            content: "\00bb";
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+        #boutonOui:hover {
+            background-color: #f7c2f9;
+        }
+        #boutonOui:hover span {
+            padding-right: 25px;
+        }
+        #boutonOui:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+        #imageChat {
+            position: absolute;
+            top: 42%;
+            left: 51%;
+            transform: translate(-50%, -50%);
+            max-width: 50%;
+            max-height: 50%;
+        }
+
+        #imageChatNouvelle {
+            display: none;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 50%;
+            max-height: 50%;
+        }
+
+        #imageChatTriste {
+            display: none;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 50%;
+            max-height: 50%;
+        }
+
+        #imageChatRayan {
+            display: none;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 50%;
+            max-height: 50%;
+        }
+
+        #imageChatReda {
+            display: none;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 50%;
+            max-height: 50%;
+        }
+
+        #message {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            font-style: italic;
+            color: blueviolet;
+            font-weight: bolder;
+            font-size: 30px;
+        }
+
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            let boutonOuiClique = false;
+            const boutonOui = document.getElementById('boutonOui');
+            const imageChat = document.getElementById('imageChat');
+            const imageChatNouvelle = document.getElementById('imageChatNouvelle');
+            const message = document.getElementById('message');
+
+            boutonOui.addEventListener('mouseover', function () {
+              if (!boutonOuiClique) {
+                imageChat.style.display = 'none';
+                imageChatTriste.style.display = 'none';
+                imageChatNouvelle.style.display = 'block';
+                message.innerHTML = 'Allez clique fais vite';
+                 }
+            });
+
+            boutonOui.addEventListener('mouseout', function () {
+              if (!boutonOuiClique) {
+                imageChatReda.style.display = 'block';
+                imageChatNouvelle.style.display = 'none';
+                message.innerHTML = 'wsh, pourquoi tu veux plus appuyer ?';
+                }
+            });
+
+            boutonOui.addEventListener('click', function () {
+                boutonOuiClique = true;
+                message.innerHTML = 'La team Pidz te remercie!';
+                imageChatNouvelle.style.display = 'none';
+                imageChatReda.style.display = 'none';
+                imageChat.style.display = 'none';
+                imageChatTriste.style.display = 'none';
+                imageChatRayan.style.display = 'block';
+                debout.stopPropagation()
+
+
+            });
+
+            const boutonNon = document.getElementById('boutonNon');
+
+            function deplacerBouton(bouton) {
+              if (!boutonOuiClique) {
+                const maxX = window.innerWidth - bouton.clientWidth;
+                const maxY = window.innerHeight - bouton.clientHeight;
+
+                const newX = Math.random() * maxX;
+                const newY = Math.random() * maxY;
+
+                bouton.style.left = newX + 'px';
+                bouton.style.top = newY + 'px';
+                }
+            }
+
+            boutonNon.addEventListener('mouseover', function () {
+              if (!boutonOuiClique) {
+                deplacerBouton(boutonNon);
+                imageChatReda.style.display = 'none';
+                imageChat.style.display = 'none';
+                imageChatTriste.style.display = 'block';
+                message.innerHTML = 'Non, arrête....';
+                }
+
+            });
+        });
+    </script>
+    <title>Belfine....</title>
+</head>
+<body>
+    <button id="boutonNon" class="bouton">Non</button>
+    <button id="boutonOui" class="bouton">Oui</button>
+    <img id="imageChat" src="ezel.jpeg">
+    <img id="imageChatNouvelle" src="danse.gif">
+    <img id="imageChatTriste" src="sad.gif">
+    <img id="imageChatRayan" src="rayou.jpeg">
+    <img id="imageChatReda" src="zehef.jpg">
+    <div id="message">Veux-tu m'épouser, askim ?</div>
+</body>
+</html>
